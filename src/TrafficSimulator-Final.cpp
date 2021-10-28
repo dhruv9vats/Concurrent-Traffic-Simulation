@@ -2,25 +2,22 @@
 #include <thread>
 #include <vector>
 
-#include "Vehicle.h"
-#include "Street.h"
-#include "Intersection.h"
 #include "Graphics.h"
-
+#include "Intersection.h"
+#include "Street.h"
+#include "Vehicle.h"
 
 // Paris
-void createTrafficObjects_Paris(std::vector<std::shared_ptr<Street>> &streets, std::vector<std::shared_ptr<Intersection>> &intersections, std::vector<std::shared_ptr<Vehicle>> &vehicles, std::string &filename, int nVehicles)
-{
+void createTrafficObjects_Paris(std::vector<std::shared_ptr<Street>> &streets, std::vector<std::shared_ptr<Intersection>> &intersections, std::vector<std::shared_ptr<Vehicle>> &vehicles, std::string &filename, int nVehicles) {
     // assign filename of corresponding city map
     // Note: You can use the webp format instead of jpeg
-    // According to Google - WebP lossless images are 26% smaller in size compared to PNGs. 
-    // WebP lossy images are 25-34% smaller than comparable JPEG images at equivalent SSIM quality index. 
+    // According to Google - WebP lossless images are 26% smaller in size compared to PNGs.
+    // WebP lossy images are 25-34% smaller than comparable JPEG images at equivalent SSIM quality index.
     filename = "../data/paris.jpg";
 
     // init traffic objects
     int nIntersections = 9;
-    for (size_t ni = 0; ni < nIntersections; ni++)
-    {
+    for (size_t ni = 0; ni < nIntersections; ni++) {
         intersections.push_back(std::make_shared<Intersection>());
     }
 
@@ -33,20 +30,18 @@ void createTrafficObjects_Paris(std::vector<std::shared_ptr<Street>> &streets, s
     intersections.at(5)->setPosition(3070, 680);
     intersections.at(6)->setPosition(2800, 1400);
     intersections.at(7)->setPosition(400, 1100);
-    intersections.at(8)->setPosition(1700, 900); // central plaza
+    intersections.at(8)->setPosition(1700, 900);  // central plaza
 
     // create streets and connect traffic objects
     int nStreets = 8;
-    for (size_t ns = 0; ns < nStreets; ns++)
-    {
+    for (size_t ns = 0; ns < nStreets; ns++) {
         streets.push_back(std::make_shared<Street>());
         streets.at(ns)->setInIntersection(intersections.at(ns));
         streets.at(ns)->setOutIntersection(intersections.at(8));
     }
 
     // add vehicles to streets
-    for (size_t nv = 0; nv < nVehicles; nv++)
-    {
+    for (size_t nv = 0; nv < nVehicles; nv++) {
         vehicles.push_back(std::make_shared<Vehicle>());
         vehicles.at(nv)->setCurrentStreet(streets.at(nv));
         vehicles.at(nv)->setCurrentDestination(intersections.at(8));
@@ -54,16 +49,14 @@ void createTrafficObjects_Paris(std::vector<std::shared_ptr<Street>> &streets, s
 }
 
 // NYC
-void createTrafficObjects_NYC(std::vector<std::shared_ptr<Street>> &streets, std::vector<std::shared_ptr<Intersection>> &intersections, std::vector<std::shared_ptr<Vehicle>> &vehicles, std::string &filename, int nVehicles)
-{
+void createTrafficObjects_NYC(std::vector<std::shared_ptr<Street>> &streets, std::vector<std::shared_ptr<Intersection>> &intersections, std::vector<std::shared_ptr<Vehicle>> &vehicles, std::string &filename, int nVehicles) {
     // assign filename of corresponding city map
     // Note: You can use the webp format instead of jpeg
     filename = "../data/nyc.jpg";
 
     // init traffic objects
     int nIntersections = 6;
-    for (size_t ni = 0; ni < nIntersections; ni++)
-    {
+    for (size_t ni = 0; ni < nIntersections; ni++) {
         intersections.push_back(std::make_shared<Intersection>());
     }
 
@@ -77,8 +70,7 @@ void createTrafficObjects_NYC(std::vector<std::shared_ptr<Street>> &streets, std
 
     // create streets and connect traffic objects
     int nStreets = 7;
-    for (size_t ns = 0; ns < nStreets; ns++)
-    {
+    for (size_t ns = 0; ns < nStreets; ns++) {
         streets.push_back(std::make_shared<Street>());
     }
 
@@ -104,8 +96,7 @@ void createTrafficObjects_NYC(std::vector<std::shared_ptr<Street>> &streets, std
     streets.at(6)->setOutIntersection(intersections.at(3));
 
     // add vehicles to streets
-    for (size_t nv = 0; nv < nVehicles; nv++)
-    {
+    for (size_t nv = 0; nv < nVehicles; nv++) {
         vehicles.push_back(std::make_shared<Vehicle>());
         vehicles.at(nv)->setCurrentStreet(streets.at(nv));
         vehicles.at(nv)->setCurrentDestination(intersections.at(nv));
@@ -113,8 +104,7 @@ void createTrafficObjects_NYC(std::vector<std::shared_ptr<Street>> &streets, std
 }
 
 /* Main function */
-int main()
-{
+int main() {
     /* PART 1 : Set up traffic objects */
 
     // create and connect intersections and streets
@@ -123,7 +113,7 @@ int main()
     std::vector<std::shared_ptr<Vehicle>> vehicles;
     std::string backgroundImg;
     int nVehicles = 6;
-    createTrafficObjects_Paris(streets, intersections, vehicles, backgroundImg, nVehicles);
+    createTrafficObjects_NYC(streets, intersections, vehicles, backgroundImg, nVehicles);
 
     /* PART 2 : simulate traffic objects */
 

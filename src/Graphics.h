@@ -1,14 +1,14 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
+#include <opencv2/core.hpp>
 #include <string>
 #include <vector>
-#include <opencv2/core.hpp>
+
 #include "TrafficObject.h"
 
-class Graphics
-{
-public:
+class Graphics {
+   public:
     // constructor / desctructor
 
     // getters / setters
@@ -18,7 +18,7 @@ public:
     // typical behaviour methods
     void simulate();
 
-private:
+   private:
     // typical behaviour methods
     void loadBackgroundImg();
     void drawTrafficObjects();

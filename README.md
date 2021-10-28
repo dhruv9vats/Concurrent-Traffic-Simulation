@@ -1,7 +1,11 @@
 # Concurrent-Traffic-Simulation
 A multi‑threaded traffic simulator using a real urban map, where each vehicle runs on a separate thread.
 
-<img src="data/traffic_simulation.gif"/>
+<img src="data/paris.gif"/>
+
+At each intersection there is a traffic light which controls the flow of traffic.
+
+<img src="data/nyc.gif"/>
 
 ## Dependencies for Running Locally
 * cmake >= 2.8
